@@ -1,1 +1,59 @@
 
+
+        body {
+            font-family: Elephant, Arial, sans-serif;
+            text-align: center;
+            font-display: Arial;
+            margin: 0;
+            padding: 0;
+            background-color:rgb(159, 240, 226);
+        }
+
+        table {
+            padding-left:50px;
+            padding-top:50px;
+            width: 50%;
+            color: rgb(185, 181, 181);
+            height: 50%;
+            display: table;
+            border-collapse: 1;
+            border-width:0px;
+        }
+
+
+        th {
+                background-color:grey;         
+            }
+
+
+        td {
+            display: table-cell;
+            vertical-align: Left;
+            border-color: navajowhite;
+            background-color:rgb(48, 43, 43);
+        }
+
+        h1 {
+            font-size: 2em;
+            margin: 0;
+        }
+
+        h6 {font-family: monospace;
+            font-size: 20px;
+            }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Responsive text */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1em;
+            }
+            h6 {
+                font-size: 1em;
+            }
+        }
+       
