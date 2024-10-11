@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Sign In - Satyam Lamsal</title>
+    <title>Time Remaining</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,7 +14,7 @@
             margin: 0;
             background-color: #f0f0f0;
         }
-        .login-container {
+        .timer-container {
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
@@ -27,74 +26,76 @@
             margin-bottom: 20px;
             font-size: 24px;
         }
-        label {
-            display: block;
-            text-align: left;
-            margin-bottom: 5px;
-            font-size: 14px;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
+        .timer {
+            font-size: 36px;
             margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            display: flex;
+            justify-content: space-around;
         }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
+        .time-part {
+            text-align: center;
         }
-        button:hover {
-            background-color: #0056b3;
-        }
-        p {
-            margin-top: 10px;
+        .time-part span {
+            display: block;
             font-size: 14px;
-        }
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
         }
     </style>
-    <script>
-        function handleLogin(event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            // Predefined username and password
-            const correctUsername = 'satyam';
-            const correctPassword = 'satyam';
-
-            // Simple comparison without encryption
-            if (username === correctUsername && password === correctPassword) {
-                window.location.href = "Welcome.html"; // Redirect to next page
-            } else {
-                alert("Invalid username or password");
-            }
-        }
-    </script>
 </head>
 <body>
-    <div class="login-container">
-        <h2>Sign In</h2>
-        <form onsubmit="handleLogin(event)">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            
-            <button type="submit">Sign In</button>
-        </form>
+    <div class="timer-container">
+        <h2>Countdown to October 15</h2>
+        <div class="timer">
+            <div class="time-part">
+                <span id="days">00</span>
+                <span>Days</span>
+            </div>
+            <div class="time-part">
+                <span id="hours">00</span>
+                <span>Hours</span>
+            </div>
+            <div class="time-part">
+                <span id="minutes">00</span>
+                <span>Minutes</span>
+            </div>
+            <div class="time-part">
+                <span id="seconds">00</span>
+                <span>Seconds</span>
+            </div>
+        </div>
     </div>
+
+    <script>
+        // Set the countdown date (October 15 of the current year)
+        let countdownDate = new Date(new Date().getFullYear(), 9, 15, 0, 0, 0).getTime(); // October 15, 00:00:00
+
+        // Check if the date has already passed this year
+        const now = new Date().getTime();
+        if (now > countdownDate) {
+            // If the date has passed, set the countdown to next year's date
+            countdownDate = new Date(new Date().getFullYear() + 1, 9, 15, 0, 0, 0).getTime();
+        }
+
+        const timer = setInterval(() => {
+            const distance = countdownDate - new Date().getTime();
+
+            // Calculate days, hours, minutes, and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Update the timer display
+            document.getElementById('days').innerText = String(days).padStart(2, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+
+            // If the countdown is finished, display a message
+            if (distance < 0) {
+                clearInterval(timer);
+                document.querySelector('.timer-container').innerHTML = "<h2>Time's Up!</h2>";
+            }
+        }, 1000);
+    </script>
 </body>
 </html>
