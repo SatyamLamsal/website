@@ -25,7 +25,7 @@
     </style>
 </head>
 <body>
-    <h1 style="text-align:center; color: red; font-size:50px; font-family:Giraffe;">About      T  I  M  E</h1>
+    <h1 style="text-align:center; color: red; font-size:50px; font-family:Giraffe;">About T I M E</h1>
     
     <div class="block timer">
         <h2>Time Left</h2>
@@ -34,7 +34,7 @@
     
     <div class="block stopwatch">
         <h2>Already Been This Long</h2>
-        <div id="stopwatch">00:00:00</div>
+        <div id="stopwatch">00d 00h 00m 00s</div>
     </div>
 
     <script>
@@ -66,14 +66,16 @@
 
         stopwatchInterval = setInterval(() => {
             stopwatchTime += 1; // Increase by 1 second
-            const hours = Math.floor(stopwatchTime / 3600);
-            const minutes = Math.floor((stopwatchTime % 3600) / 60);
-            const seconds = stopwatchTime % 60;
+            const days = Math.floor(stopwatchTime / 86400); // 86400 seconds in a day
+            const hours = Math.floor((stopwatchTime % 86400) / 3600); // 3600 seconds in an hour
+            const minutes = Math.floor((stopwatchTime % 3600) / 60); // 60 seconds in a minute
+            const seconds = stopwatchTime % 60; // Remaining seconds
             
             document.getElementById("stopwatch").innerHTML =
-                String(hours).padStart(2, '0') + ":" + 
-                String(minutes).padStart(2, '0') + ":" + 
-                String(seconds).padStart(2, '0');
+                String(days).padStart(2, '0') + "d " + // Display days
+                String(hours).padStart(2, '0') + "h " + 
+                String(minutes).padStart(2, '0') + "m " + 
+                String(seconds).padStart(2, '0') + "s"; // Display seconds
         }, 1000);
 
         // Initialize stopwatch to start from midnight
@@ -82,14 +84,16 @@
         stopwatchTime = Math.floor((now.getTime() - midnight) / 1000); // Seconds since midnight
 
         // Set the initial value of the stopwatch
-        const hours = Math.floor(stopwatchTime / 3600);
+        const days = Math.floor(stopwatchTime / 86400);
+        const hours = Math.floor((stopwatchTime % 86400) / 3600);
         const minutes = Math.floor((stopwatchTime % 3600) / 60);
         const seconds = stopwatchTime % 60;
         
         document.getElementById("stopwatch").innerHTML =
-            String(hours).padStart(2, '0') + ":" + 
-            String(minutes).padStart(2, '0') + ":" + 
-            String(seconds).padStart(2, '0');
+            String(days).padStart(2, '0') + "d " + 
+            String(hours).padStart(2, '0') + "h " + 
+            String(minutes).padStart(2, '0') + "m " + 
+            String(seconds).padStart(2, '0') + "s"; // Display initial stopwatch value
     </script>
 </body>
 </html>
