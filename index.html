@@ -60,40 +60,32 @@
             }
         }, 1000);
 
-        // Stopwatch
+        // Stopwatch starting from 12 AM on 10th October 2024
+        const stopwatchStartDate = new Date("October 11, 2024 00:00:00").getTime();
         let stopwatchInterval;
         let stopwatchTime = 0;
 
         stopwatchInterval = setInterval(() => {
-            stopwatchTime += 1; // Increase by 1 second
+            const now = new Date().getTime();
+            const elapsedTime = now - stopwatchStartDate; // Time difference in milliseconds
+
+            stopwatchTime = Math.floor(elapsedTime / 1000); // Convert to seconds
+
             const days = Math.floor(stopwatchTime / 86400); // 86400 seconds in a day
             const hours = Math.floor((stopwatchTime % 86400) / 3600); // 3600 seconds in an hour
             const minutes = Math.floor((stopwatchTime % 3600) / 60); // 60 seconds in a minute
             const seconds = stopwatchTime % 60; // Remaining seconds
             
             document.getElementById("stopwatch").innerHTML =
-                String(days).padStart(2, '0') + "d " + // Display days
+                String(days).padStart(2, '0') + "d " + 
                 String(hours).padStart(2, '0') + "h " + 
                 String(minutes).padStart(2, '0') + "m " + 
                 String(seconds).padStart(2, '0') + "s"; // Display seconds
         }, 1000);
 
-        // Initialize stopwatch to start from midnight
-        const now = new Date();
-        const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
-        stopwatchTime = Math.floor((now.getTime() - midnight) / 1000); // Seconds since midnight
-
-        // Set the initial value of the stopwatch
-        const days = Math.floor(stopwatchTime / 86400);
-        const hours = Math.floor((stopwatchTime % 86400) / 3600);
-        const minutes = Math.floor((stopwatchTime % 3600) / 60);
-        const seconds = stopwatchTime % 60;
-        
-        document.getElementById("stopwatch").innerHTML =
-            String(days).padStart(2, '0') + "d " + 
-            String(hours).padStart(2, '0') + "h " + 
-            String(minutes).padStart(2, '0') + "m " + 
-            String(seconds).padStart(2, '0') + "s"; // Display initial stopwatch value
+        // Initialize stopwatch with the elapsed time from 12 AM on 10th October 2024
+        const now = new Date().getTime();
+        stopwatchTime = Math.floor((now - stopwatchStartDate) / 1000); // Seconds since 12 AM on 10th October
     </script>
 </body>
 </html>
