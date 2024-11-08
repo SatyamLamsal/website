@@ -1,91 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time Limit</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-        }
-        .block {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 20px;
-            margin: 20px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        .timer, .stopwatch {
-            font-size: 2em;
-            margin: 20px 0;
-        }
-    </style>
-</head>
-<body>
-    <h1 style="text-align:center; color: red; font-size:50px; font-family:Giraffe;">About T I M E</h1>
+<html lang = "en">
+    <title>
+        <head>Site Under Construction</head>
+    </title>
+    <body>
+        <h1 text-align="center">
+            Finishing Up
+        </h1>
+    </body>
     
-    <div class="block timer">
-        <h2>Time Left</h2>
-        <div id="countdown"></div>
-    </div>
-    
-    <div class="block stopwatch">
-        <h2>Already Been This Long</h2>
-        <div id="stopwatch">00d 00h 00m 00s</div>
-    </div>
-
-    <script>
-        // Countdown Timer
-        const countdownDate = new Date("October 17, 2024 00:00:00").getTime();
-        
-        const countdownFunction = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = countdownDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("countdown").innerHTML =
-                days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
-            // If the countdown is finished
-            if (distance < 0) {
-                clearInterval(countdownFunction);
-                document.getElementById("countdown").innerHTML = "EXPIRED";
-            }
-        }, 1000);
-
-        // Stopwatch starting from 12 AM on 10th October 2024
-        const stopwatchStartDate = new Date("October 11, 2024 00:00:00").getTime();
-        let stopwatchInterval;
-        let stopwatchTime = 0;
-
-        stopwatchInterval = setInterval(() => {
-            const now = new Date().getTime();
-            const elapsedTime = now - stopwatchStartDate; // Time difference in milliseconds
-
-            stopwatchTime = Math.floor(elapsedTime / 1000); // Convert to seconds
-
-            const days = Math.floor(stopwatchTime / 86400); // 86400 seconds in a day
-            const hours = Math.floor((stopwatchTime % 86400) / 3600); // 3600 seconds in an hour
-            const minutes = Math.floor((stopwatchTime % 3600) / 60); // 60 seconds in a minute
-            const seconds = stopwatchTime % 60; // Remaining seconds
-            
-            document.getElementById("stopwatch").innerHTML =
-                String(days).padStart(2, '0') + "d " + 
-                String(hours).padStart(2, '0') + "h " + 
-                String(minutes).padStart(2, '0') + "m " + 
-                String(seconds).padStart(2, '0') + "s"; // Display seconds
-        }, 1000);
-
-        // Initialize stopwatch with the elapsed time from 12 AM on 10th October 2024
-        const now = new Date().getTime();
-        stopwatchTime = Math.floor((now - stopwatchStartDate) / 1000); // Seconds since 12 AM on 10th October
-    </script>
-</body>
 </html>
